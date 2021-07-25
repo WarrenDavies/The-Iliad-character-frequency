@@ -51,7 +51,8 @@ characters = [ \
     'Theano', \
 ]
 
-with open('book1.txt') as b:
+with open('./books/book1.txt') as b:
     book1 = b.read()
 
-    
+for character in characters:
+    print(character + ': '  + str(book1.count(character)))
