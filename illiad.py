@@ -1,58 +1,75 @@
+import os
+
 characters = [ \
+    
+    # Deities
+    #########
     'Zeus', \
     'Hera', \
-    
-    'Pallas', \
     'Athene', \
-    
     'Aphrodite', \
     'Poseidon', \
     'Ares', \
-    'Hephaestus', \
+    # 'Hephaestus', \
+    'Hephaistos', \
+    'Apollo', \
+    # 'Hermes', \
+    # 'Thetis', \
 
+    # Greeks
+    ########
     'Achilles', \
     'Agamemnon', \
-    'Ajax the lesser', \
-    'Ajax the greater', \
-    'Antilochus', \
-    'Achilles', \
-    'Agamemnon', \
-    #'Ajax or Aias (Αίας), also known as Telamonian Ajax (he was the son of Telamon) and Greater Ajax', \
-    #'Ajax the Lesser', \
-    'Aias'
-    'Antilochus', \
-    'Calchas', \
-    'Diomedes', \
+    # 'Antilochus', \
+    #'Ajax the greater', # not used in Lang \
+    #'Ajax the Lesser', # not used in Lang \
+    'Aias', # Lang spelling of Ajax \ 
+    # 'Antilochus', \
+    # 'Calchas', \
+    # 'Diomedes', \
     'Helen', \
-    'Idomeneus', \
-    'Menelaus', \
+    # 'Idomeneus', \
+    # 'Menelaus', \ # not used in Lang 
+    'Menelaos', \
     'Nestor', \
     'Odysseus', \
-    'Patroclus', \
-    'Phoenix', \
-    'Teucer', \
-    'Aesymnus', \
+    'Patroklos', \
+    # 'Phoenix', \
+    # 'Teucer', \
+    # 'Aesymnus', \
 
-    #trojans
-    'Aeneas', \
-    'Agenor', \
-    'Andromache', \
-    'Antenor', \
-    'Cassandra', \
-    'Glaucus', \
+    # Trojans
+    #########
+    # 'Aeneas', \ # not used in Lang 
+    'Aineias', \
+    # 'Agenor', \
+    # 'Andromache', \
+    # 'Antenor', \
+    # 'Cassandra', \
+    # 'Glaucus', \
     'Hector', \
-    'Laodice', \
-    'Lycaon', \
-    'Pandarus', \
+    # 'Laodice', \
+    # 'Lycaon', \
+    # 'Pandarus', \
     'Paris', \
-    'Polydamas', \
+    # 'Polydamas', \
     'Priam', \
-    'Sarpedon', \
-    'Theano', \
+    # 'Sarpedon', \
+    # 'Theano', \
+    # 'Briseis', \
 ]
 
-with open('./books/book1.txt') as b:
-    book1 = b.read()
+books = os.listdir('./lang')
+books = sorted(books)
+print(books)
 
 for character in characters:
-    print(character + ': '  + str(book1.count(character)))
+    print(character + ',', end = '')
+    for book in books:
+        with open('./lang/' + book) as b:
+            current_book = b.read()
+        print(str(current_book.count(character)), end=',')
+    print('')    
+
+# for character in characters:
+#     print(character + ': '  + str(book1.count(character)))
