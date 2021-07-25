@@ -1,7 +1,13 @@
-import os
+import os #, pandas as pd
+
+class character:
+    def __init__(name, group, counts):
+        self.name = name
+        self.group = group
+        self.counts = []
 
 characters = [ \
-    
+
     # Deities
     #########
     'Zeus', \
@@ -41,7 +47,7 @@ characters = [ \
     # Trojans
     #########
     # 'Aeneas', \ # not used in Lang 
-    'Aineias', \
+    # 'Aineias', \ 
     # 'Agenor', \
     # 'Andromache', \
     # 'Antenor', \
@@ -59,17 +65,24 @@ characters = [ \
     # 'Briseis', \
 ]
 
+counts = []
+for character in characters:
+    counts.append([character])
+
 books = os.listdir('./lang')
 books = sorted(books)
 print(books)
 
-for character in characters:
-    print(character + ',', end = '')
-    for book in books:
-        with open('./lang/' + book) as b:
-            current_book = b.read()
-        print(str(current_book.count(character)), end=',')
-    print('')    
 
-# for character in characters:
-#     print(character + ': '  + str(book1.count(character)))
+for book in books:
+    with open('./lang/' + book) as b:
+        current_book = b.read()
+    i = 0
+    for character in characters:
+        counts[i].append(current_book.count(character))   
+        i = i + 1
+
+for character in counts:
+    for count in character:
+        print(str(count) + ",", end='')
+    print('')
